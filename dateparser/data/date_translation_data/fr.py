@@ -96,7 +96,6 @@ info = {
     "year": [
         "année",
         "an",
-        "a",
         "années"
     ],
     "month": [
