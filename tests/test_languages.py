@@ -49,6 +49,8 @@ class TestBundledLanguages(BaseTestCase):
         param('fr', "20 Février 2012", "20 february 2012"),
         param('fr', "Mercredi 19 Novembre 2013", "wednesday 19 november 2013"),
         param('fr', "18 octobre 2012 à 19 h 21 min", "18 october 2012  19:21"),
+        param('fr', "04/07/2018 à 22:36", '04/07/2018  22:36'),
+        param('fr', "le 02/07/2018 à 16h46", ' 02/07/2018  16:46'),
         # German
         param('de', "29. Juni 2007", "29. june 2007"),
         param('de', "Montag 5 Januar, 2015", "monday 5 january 2015"),
@@ -66,6 +68,7 @@ class TestBundledLanguages(BaseTestCase):
         # Italian
         param('it', "Giovedi Maggio 29 2013", "thursday may 29 2013"),
         param('it', "19 Luglio 2013", "19 july 2013"),
+        param('it', "5 Luglio 2018 alle 00:07", "5 july 2018  00:07"),
         # Portuguese
         param('pt', "22 de dezembro de 2014 às 02:38", "22  december  2014  02:38"),
         # Russian
@@ -566,6 +569,7 @@ class TestBundledLanguages(BaseTestCase):
         # mk
         param('mk', "4 септември 2009 09:18 претпл", "4 september 2009 09:18 am"),
         param('mk', "вторник 10 август 1777 01:12 попл", "tuesday 10 august 1777 01:12 pm"),
+        param('mk', "04/07/18 Срд 21:02:37", "04/07/18 wednesday 21:02:37"),
 
         # mn
         param('mn', "дөрөвдүгээр сар 15 баасан 10:10 үө", "april 15 friday 10:10 am"),
@@ -722,6 +726,7 @@ class TestBundledLanguages(BaseTestCase):
         # sq
         param('sq', "2 qershor 1997 e mërkurë 10:08 pasdite", "2 june 1997 wednesday 10:08 pm"),
         param('sq', "pre 15 gusht 1885 04:54 e paradites", "friday 15 august 1885 04:54 am"),
+        param('sq', "4 Korrik 2018 në ora 23:35", "4 july 2018  23:35"),
 
         # sr-Cyrl
         param('sr-Cyrl', "16 април 2016 суб 03:46 по подне", "16 april 2016 saturday 03:46 pm"),
@@ -812,6 +817,7 @@ class TestBundledLanguages(BaseTestCase):
 
     @parameterized.expand([
         # English
+        param('en', 'A moment ago', '1 second ago'),
         param('en', 'three week ago', '3 week ago'),
         param('en', 'five day ago', '5 day ago'),
         param('en', "yesterday", "1 day ago"),
@@ -826,10 +832,12 @@ class TestBundledLanguages(BaseTestCase):
         param('de', "vor 2 Monaten", "2 month ago"),
         param('de', "vor 2 Monaten, 2 Wochen", "2 month ago 2 week"),
         # French
+        param('fr', "Il y a un instant", "1 second ago"),
         param('fr', "avant-hier", "2 day ago"),
         param('fr', "hier", "1 day ago"),
         param('fr', "aujourd'hui", "0 day ago"),
         # Spanish
+        param('es', "Hace un momento", "1 second ago"),
         param('es', "anteayer", "2 day ago"),
         param('es', "ayer", "1 day ago"),
         param('es', "ayer a las", "1 day ago "),

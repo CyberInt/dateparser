@@ -251,7 +251,8 @@ info = {
         "\\1 second ago": [
             "(\\d+) second ago",
             "(\\d+) seconds ago",
-            "(\\d+) sec ago"
+            "(\\d+) sec ago",
+            "(\\d+) moment ago"
         ]
     },
     "locale_specific": {

@@ -424,6 +424,7 @@ info = {
         "le",
         "environ",
         "et",
+        "à",
         "er",
         " ",
         ".",
@@ -446,7 +447,6 @@ info = {
     "in": [
         "dans",
         "en",
-        "à"
     ],
     "simplifications": [
         {
