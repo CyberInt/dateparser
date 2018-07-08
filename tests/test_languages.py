@@ -812,6 +812,8 @@ class TestBundledLanguages(BaseTestCase):
 
     @parameterized.expand([
         # English
+        param('en', 'three week ago', '3 week ago'),
+        param('en', 'five day ago', '5 day ago'),
         param('en', "yesterday", "1 day ago"),
         param('en', "today", "0 day ago"),
         param('en', "day before yesterday", "2 day ago"),
@@ -857,6 +859,7 @@ class TestBundledLanguages(BaseTestCase):
         param('ru', "сейчас", "0 second ago"),
         param('ru', "спустя 2 дня", "in 2 day"),
         param('ru', "вчера", "1 day ago"),
+        param('ru', '5 дн назад', '5 day ago'),
         param('ru', "сегодня", "0 day ago"),
         param('ru', "завтра", "in 1 day"),
         param('ru', "послезавтра", "in 2 day"),

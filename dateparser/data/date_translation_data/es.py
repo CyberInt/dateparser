@@ -245,7 +245,8 @@ info = {
         "\\1 second ago": [
             "hace (\\d+) segundo",
             "hace (\\d+) segundos",
-            "hace (\\d+) s"
+            "hace (\\d+) s",
+            "hace (\\d+) momento"
         ]
     },
     "locale_specific": {

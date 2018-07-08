@@ -248,7 +248,8 @@ info = {
         "\\1 second ago": [
             "il y a (\\d+) seconde",
             "il y a (\\d+) secondes",
-            "il y a (\\d+) s"
+            "il y a (\\d+) s",
+            "il y a (\\d+) instant"
         ]
     },
     "locale_specific": {
@@ -424,7 +425,6 @@ info = {
         "le",
         "environ",
         "et",
-        "à",
         "er",
         " ",
         ".",
@@ -446,7 +446,8 @@ info = {
     ],
     "in": [
         "dans",
-        "en"
+        "en",
+        "à"
     ],
     "simplifications": [
         {
