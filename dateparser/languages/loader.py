@@ -204,12 +204,12 @@ class LocaleDataLoader(object):
                         import_module('dateparser.data.date_translation_data.' + lang), 'info')
                     if language_info.get('no_word_spacing', "False") == "False":
                         try:
-                            extented_simp = self.create_extended_simplifications(
-                                'dateparser.data.numeral_translation_data.' + lang)
                             simplifications = language_info.get('simplifications', [])
                             if simplifications:
-                                language_info['simplifications'] = simplifications +\
-                                                                   extented_simp
+                                extented_simp = self.create_extended_simplifications(
+                                    'dateparser.data.numeral_translation_data.' + lang)
+                                language_info['simplifications'] = \
+                                    simplifications + extented_simp
                         except ModuleNotFoundError:
                             pass
                     language_info = convert_to_unicode(language_info)

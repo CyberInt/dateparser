@@ -446,7 +446,7 @@ info = {
     ],
     "in": [
         "dans",
-        "en",
+        "en"
     ],
     "simplifications": [
         {
