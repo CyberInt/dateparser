@@ -6,12 +6,16 @@ from importlib import import_module
 from six.moves import zip_longest
 import regex as re
 from copy import deepcopy
+from itertools import starmap
 
 from ..data import language_order, language_locale_dict
 from .locale import Locale
 from ..utils import convert_to_unicode
 
 LOCALE_SPLIT_PATTERN = re.compile(r'-(?=[A-Z0-9]+$)')
+
+SPELLOUT_TYPES = ['%spellout-cardinal', '%spellout-cardinal-feminine',
+                 '%spellout-cardinal-masculine']
 
 
 def _isvalidlocale(locale):
@@ -132,6 +136,26 @@ class LocaleDataLoader(object):
         """
         return list(self.get_locales(locales=[shortname]))[0]
 
+    @staticmethod
+    def create_extended_simplifications(module_name):
+
+        def _get_simplification(spell_name):
+            spellout = module_info.get(spell_name, {})
+            iter_simplifications = filter(lambda item: item[0].isdigit(),
+                                          spellout.items())
+            yield from starmap(lambda k, v: {re.sub(r'\W+', '', v): k},
+                               iter_simplifications)
+
+        extended_simp = list()
+        module_info = getattr(import_module(module_name), 'info')
+        for spellout_name in SPELLOUT_TYPES:
+            try:
+                for simplification in _get_simplification(spellout_name):
+                    extended_simp.append(simplification)
+            except AttributeError:
+                continue
+        return extended_simp
+
     def _load_data(self, languages=None, locales=None, region=None,
                    use_given_order=False, allow_conflicting_locales=False):
         locale_dict = OrderedDict()
@@ -178,6 +202,16 @@ class LocaleDataLoader(object):
                 else:
                     language_info = getattr(
                         import_module('dateparser.data.date_translation_data.' + lang), 'info')
+                    if language_info.get('no_word_spacing', "False") == "False":
+                        try:
+                            simplifications = language_info.get('simplifications', [])
+                            if simplifications:
+                                extented_simp = self.create_extended_simplifications(
+                                    'dateparser.data.numeral_translation_data.' + lang)
+                                language_info['simplifications'] = \
+                                    simplifications + extented_simp
+                        except ModuleNotFoundError:
+                            pass
                     language_info = convert_to_unicode(language_info)
                     locale = Locale(shortname, language_info=deepcopy(language_info))
                     self._loaded_languages[lang] = language_info

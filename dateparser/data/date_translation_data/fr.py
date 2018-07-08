@@ -96,7 +96,6 @@ info = {
     "year": [
         "année",
         "an",
-        "a",
         "années"
     ],
     "month": [
@@ -248,7 +247,8 @@ info = {
         "\\1 second ago": [
             "il y a (\\d+) seconde",
             "il y a (\\d+) secondes",
-            "il y a (\\d+) s"
+            "il y a (\\d+) s",
+            "il y a (\\d+) instant"
         ]
     },
     "locale_specific": {

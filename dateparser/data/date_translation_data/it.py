@@ -273,7 +273,8 @@ info = {
         "fa"
     ],
     "in": [
-        "in"
+        "in",
+        "alle"
     ],
     "simplifications": [
         {
